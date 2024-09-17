@@ -3,6 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import check_password_hash, generate_password_hash
 app= Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"]="sqlite:///project.db"
+app.config["SQLALCHEMY_BINDS"]={
+                                'job': 'sqlite:///job.db'}
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db=SQLAlchemy(app)
 
@@ -15,7 +17,19 @@ class pro(db.Model):
 
     def __repr__(self) -> str:
         return f"{self.first_name} {self.last_name}"
-    
+
+class job(db.Model):
+    __bind_key__='job'
+    id=db.Column(db.Integer,primary_key=True)
+    job_name=db.Column(db.String(500),nullable=False)
+    job_description=db.Column(db.String(5000),nullable=True)
+    job_type=db.Column(db.String(100),nullable=True)
+    job_location=db.Column(db.String(5000),nullable=True)
+    job_skill=db.Column(db.String(5000),nullable=True)
+    job_exp=db.Column(db.String(5000),nullable=True)
+    def __repr__(self) -> str:
+        return f"{self.job_name}"
+
 with app.app_context():
     db.create_all()
 
@@ -50,6 +64,22 @@ def check():
 @app.route('/joblisting')
 def joblisting():
     return render_template('jobprofile.html')
+
+@app.route('/jobposting/',methods=['GET','POST'])
+def jobposting():
+    if request.method=="POST":
+        job_name=request.form['job_name']
+        job_description=request.form['job_description']
+        job_type=request.form['job_type']
+        job_location=request.form['job_location']
+        job_skill=request.form['job_skill']
+        job_exp=request.form['job_exp']
+        Job = job(job_name=job_name, job_description=job_description, job_type=job_type, job_location=job_location, job_skill=job_skill, job_exp=job_exp)
+        db.session.add(Job)
+        db.session.commit()
+    jobReq = job.query.all()
+    print(jobReq)
+    return render_template('jobposting.html',jobReq=jobReq)
 
 @app.route('/profile')
 def profile():
