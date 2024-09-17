@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'loginpage.css')}}" >
+
+    <title>Login</title>
+  </head>
+ <body>
+    <div class="container">        
+        <img src="https://res.cloudinary.com/dcsg1cjnt/image/upload/v1725799367/login-image3_spqjs8.png" alt="" class="image">
+        <div class="Login-info">
+            <form action='/jobposting/' method="POST">
+                <h2 class="create-account">Create job application</h2>
+                <div class="login-data">
+                        
+                        
+                    <input type="text" placeholder="Job" name="job_name"  class="first-name" required>
+                    
+                    
+                    <input type="text"  placeholder="description" name="job_description" class="first-name" required>
+                    
+                    <input type="text"  placeholder="Type" name="job_type" class="email" required>
+                    
+                    <input type="text"  placeholder="location" name="job_location" class="email" required>
+                    <input type="text"  placeholder="skills" name="job_skill" class="email" required>
+                    <input type="text"  placeholder="experience" name="job_exp" class="email" required>
+                    
+                </div>
+                    <button type="submit" class="new-account">submit</button>
+                <hr>
+            </form>
+        </div>
+    </div>
+ </body>
+</html>
