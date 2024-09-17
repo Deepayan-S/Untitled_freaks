@@ -1,47 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Search Website</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename = 'jobprofile.css')}}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href=/CSS/Jobprofile.css>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="#">Work Location</a></li>
-            <li><a href="#">Internship</a></li>
-            <li><a href="#">Membership</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">FAQs</a></li>
-            <li><a href="/profile">Profile</a></li>
-            <li><a href="#"><i class="fas fa-cog"></i></a></li>
-            <li><a href="#"><i class="fas fa-bell"></i></a></li>
-        </ul>
-    </nav>
-
+<title>Job Search Website</title>
+<link rel="stylesheet" href=/static/CSS/Jobprofile.css>
     <!-- <hr class="hr-line"> -->
      
     <div class="search-bar">
         <div class="location-input">
             <i class="fas fa-map-marker-alt"></i>
-            <input type="text" placeholder="Work Location">
+            <input class="local" type="text" placeholder="Work Location">
         </div>
         <input type="text" placeholder="Search for jobs...">
         <button>Search</button>
     </div>
+
     <div class="container">
+        <nav>           
+            <ul>
+            <li><a href="#"><img src=https://res.cloudinary.com/dsq6yx6ec/image/upload/v1726556980/Home_nyxwby.png alt="image" class="image"> 
+                </span></a></li>
+
+            <li><a href="#"><img src=https://res.cloudinary.com/dsq6yx6ec/image/upload/v1726556980/job_fd5mv0.png alt="image" class="image"> </a></li>
+
+            <li><a href="#"><img src="https://res.cloudinary.com/dsq6yx6ec/image/upload/v1726556981/notification_ufhyvb.png" alt="image" class="image"></a>
+            </li>
+ 
+            <li><a href="#"><img src="https://res.cloudinary.com/dsq6yx6ec/image/upload/v1726556981/messages_vfpdm3.png" alt="image" class="image"></a>
+            </li>            
+        
+            <li><a href="#"> <img src=https://res.cloudinary.com/dsq6yx6ec/image/upload/v1726556981/career_uadfon.png alt="image" class="image"></a></li>
+                
+            <li><a href="#"><img src=https://res.cloudinary.com/dsq6yx6ec/image/upload/v1726556980/account_circle_aixovh.png alt="image" class="image"></a></li>
+
+            <li><a href="#"><img src="https://res.cloudinary.com/dsq6yx6ec/image/upload/v1726556981/sign_out_rsrfiw.png" alt="image" class="image"></a></li>
+            
+            </ul>
+            
+        </nav>
         <aside>
+         
             <h2>Filters</h2>
             <div class="filter-group">
+                <div class="Working-shedule">Working shedule
                 <label><input type="checkbox"> Full-time</label>
                 <label><input type="checkbox"> Part-time</label>
+                </div>
             </div>
+
             <div class="filter-group">
+                <div class="Working-shedule">Working shedule
                 <label><input type="checkbox"> Full-time</label>
                 <label><input type="checkbox"> Part-time</label>
             </div>
+        </div>
             <div class="filter-group">
                 <label><input type="checkbox"> Full-time</label>
                 <label><input type="checkbox"> Part-time</label>
@@ -146,5 +162,6 @@
         </main>
 
     </div>
+    <!-- <script src="/Java script/Jobprofile.js"></script> -->
 </body>
 </html>

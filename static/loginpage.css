@@ -2,7 +2,136 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;;
+}
+/* body{
+   background-image: url(login-image3.png);
+   background:linear-gradient(45deg , #c000b2aa, #8a2be2);
+} */
+
+.container{
+    height: 100vh;
+    background-color:#f0f2f5;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background:linear-gradient(45deg , #c000b2aa, #8a2be2);
+}
+.create-account{
+    margin: 50px 80px 30px 0px;
+}
+
+.image{
+    position: absolute;
+    height: 600px;
+    width: 500px;
+    z-index: 1;
+    top: 50px;
+    left: 150px;
+}
+
+.login-data{
+    margin-left:10%;
+}
+.Login-info{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-between;
+    align-items: center;
+    position: absolute;
+    z-index: 2;
+    top: 80px;
+    left: 600px;
+    /* background-color: aquamarine; */
+}
+/* @media screen and (min-width: 50%){
+    .Login-info form{ width: 400px;
+
+    }
+
+} */
+    
+
+.Login-info form{
+    box-shadow: 1px 1px 5px  gray;
+    margin-left: 50px;
+    background-color: #fff;
+    width: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius: 10px;
+}
+.Login-info form input{
+  
+    border: 1px solid blue;
+    border-radius:8px;
+    margin: 10px;
+    padding-left: 20px;
+
+}
+.first-name{    
+    height:3em;
+    width: 40%;
+}
+.email{
+    height:3em;
+    width: 85%;
+    /* margin-left:20px ; */
+
+}
+.new-account{
+    height:3em;
+    width: 85%;
+    border: 1px solid blue;
+    border-radius:8px;
+    color:#fff;
+    background-color: rgb(25, 2, 118);
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    margin-left: 5px;
+    margin-top: 20px;
+
+}
+.account{
+    text-decoration: none;
+    color: black;
+
+}
+.account .login{
+    font-weight: 600;
+}
+.continue{
+    height:3em;
+    width: 40%;
+    background-color: white;
+    color: black;
+    margin-bottom: 30px;
+    margin-left: 20px;
+    border: 2px solid blue;
+    border-radius: 10px;
+
+}
+hr{
+    margin: 30px 0px ;
+}
+.continue .google-image{
+    height: 15px;
+    margin-right: 5px;
+}
+.continue .facebook-image{
+    height: 15px;
+    margin-right: 5px;
+}
+=======
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Helvetica, Arial, sans-serif;;
 }
 /* body{
    background-image: url(login-image3.png);
@@ -126,3 +255,4 @@ hr{
     height: 15px;
     margin-right: 5px;
 }
+
