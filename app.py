@@ -63,7 +63,8 @@ def check():
 
 @app.route('/joblisting')
 def joblisting():
-    return render_template('jobprofile.html')
+    jobList = job.query.all()
+    return render_template('jobprofile.html',jobList=jobList)
 
 @app.route('/jobposting/',methods=['GET','POST'])
 def jobposting():
