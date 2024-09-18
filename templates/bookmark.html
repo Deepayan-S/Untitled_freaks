@@ -1,0 +1,65 @@
+//For local storage of bookmarked jobs
+
+{% extends 'base.html' %}
+{% block head %}
+<title>Bookmarked Jobs</title>
+<link rel="stylesheet" href="/static/CSS/Jobprofile.css">
+{% endblock %}
+
+{% block body %}
+    <nav>
+        <!-- Navigation Menu -->
+    </nav>
+
+    <div class="container">
+        <main class="main-content">
+            <div class="job-filters">
+                <h2>Your Bookmarked Jobs</h2>
+            </div>
+            <div class="job-grid" id="bookmark-grid">
+                <!-- Bookmarked jobs will be dynamically populated here -->
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function loadBookmarkedJobs() {
+            const bookmarkedJobs = JSON.parse(localStorage.getItem('bookmarkedJobs')) || [];
+            const bookmarkGrid = document.getElementById('bookmark-grid');
+
+            if (bookmarkedJobs.length === 0) {
+                bookmarkGrid.innerHTML = "<p>You have no bookmarked jobs.</p>";
+            } else {
+                bookmarkGrid.innerHTML = ''; // Clear any existing content
+
+                bookmarkedJobs.forEach(job => {
+                    const jobCard = document.createElement('div');
+                    jobCard.classList.add('job-card');
+                    jobCard.innerHTML = `
+                        <div class="job-card-header">
+                            <span>${job.title}</span>
+                            <span class="remove-bookmark" style="color: black; cursor: pointer;">x</span>
+                        </div>
+                        <div class="job-company">${job.company}</div>
+                    `;
+                    bookmarkGrid.appendChild(jobCard);
+
+                    // Handle remove bookmark event
+                    jobCard.querySelector('.remove-bookmark').addEventListener('click', () => {
+                        removeBookmark(job.id);
+                    });
+                });
+            }
+        }
+
+        function removeBookmark(jobId) {
+            let bookmarkedJobs = JSON.parse(localStorage.getItem('bookmarkedJobs')) || [];
+            bookmarkedJobs = bookmarkedJobs.filter(job => job.id !== jobId);
+            localStorage.setItem('bookmarkedJobs', JSON.stringify(bookmarkedJobs));
+            loadBookmarkedJobs(); // Reload the bookmarked jobs list
+        }
+
+        window.onload = loadBookmarkedJobs;
+    </script>
+{% endblock %}
+

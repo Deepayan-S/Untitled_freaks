@@ -62,9 +62,27 @@ def check():
     return render_template("af.html")
 
 @app.route('/joblisting')
+def jobprofile():
+    return render_template('jobprofile.html')  # Serve HTML without job data
+
+@app.route('/api/joblisting', methods=['GET'])
 def joblisting():
     jobList = job.query.all()
-    return render_template('jobprofile.html',jobList=jobList)
+
+    # Convert jobList to JSON format
+    jobs = []
+    for j in jobList:
+        jobs.append({
+            'id': j.id,
+            'job_name': j.job_name,
+            'job_description': j.job_description,
+            'job_type': j.job_type,
+            'job_location': j.job_location,
+            'job_skill': j.job_skill,
+            'job_exp': j.job_exp
+        })
+
+    return jsonify(jobs)  # Send job data as JSON
 
 @app.route('/jobposting/',methods=['GET','POST'])
 def jobposting():

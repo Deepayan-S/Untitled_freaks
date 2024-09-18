@@ -1,63 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Job Search Website</title>
-    <link rel="stylesheet" href=/CSS/Jobprofile.css>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-</head>
-<body>
+{% extends 'base.html' %}
+{% block head %}
 <title>Job Search Website</title>
-<link rel="stylesheet" href=/static/CSS/Jobprofile.css>
+<link rel="stylesheet" href="/static/CSS/Jobprofile.css">
+{% endblock %}
+
+
+{% block body %}
+    <nav>
+        <ul>
+            <li><a href="#">Work Location</a></li>
+            <li><a href="#">Internship</a></li>
+            <li><a href="#">Membership</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">FAQs</a></li>
+            <li><a href="/profile/">Profile</a></li>
+            <li><a href="#"><i class="fas fa-cog"></i></a></li>
+            <li><a href="#"><i class="fas fa-bell"></i></a></li>
+        </ul>
+    </nav>
+
     <!-- <hr class="hr-line"> -->
      
     <div class="search-bar">
         <div class="location-input">
             <i class="fas fa-map-marker-alt"></i>
-            <input class="local" type="text" placeholder="Work Location">
+            <input type="text" placeholder="Work Location">
         </div>
         <input type="text" placeholder="Search for jobs...">
         <button>Search</button>
     </div>
-
     <div class="container">
-        <nav>           
-            <ul>
-            <li><a href="#"><img src=https://res.cloudinary.com/dsq6yx6ec/image/upload/v1726556980/Home_nyxwby.png alt="image" class="image"> 
-                </span></a></li>
-
-            <li><a href="#"><img src=https://res.cloudinary.com/dsq6yx6ec/image/upload/v1726556980/job_fd5mv0.png alt="image" class="image"> </a></li>
-
-            <li><a href="#"><img src="https://res.cloudinary.com/dsq6yx6ec/image/upload/v1726556981/notification_ufhyvb.png" alt="image" class="image"></a>
-            </li>
- 
-            <li><a href="#"><img src="https://res.cloudinary.com/dsq6yx6ec/image/upload/v1726556981/messages_vfpdm3.png" alt="image" class="image"></a>
-            </li>            
-        
-            <li><a href="#"> <img src=https://res.cloudinary.com/dsq6yx6ec/image/upload/v1726556981/career_uadfon.png alt="image" class="image"></a></li>
-                
-            <li><a href="#"><img src=https://res.cloudinary.com/dsq6yx6ec/image/upload/v1726556980/account_circle_aixovh.png alt="image" class="image"></a></li>
-
-            <li><a href="#"><img src="https://res.cloudinary.com/dsq6yx6ec/image/upload/v1726556981/sign_out_rsrfiw.png" alt="image" class="image"></a></li>
-            
-            </ul>
-            
-        </nav>
         <aside>
-         
             <h2>Filters</h2>
             <div class="filter-group">
-                <div class="Working-shedule">Working shedule
                 <label><input type="checkbox"> Full-time</label>
                 <label><input type="checkbox"> Part-time</label>
-                </div>
             </div>
-
             <div class="filter-group">
-                <div class="Working-shedule">Working shedule
                 <label><input type="checkbox"> Full-time</label>
                 <label><input type="checkbox"> Part-time</label>
             </div>
-        </div>
             <div class="filter-group">
                 <label><input type="checkbox"> Full-time</label>
                 <label><input type="checkbox"> Part-time</label>
@@ -160,8 +142,64 @@
                 <!-- Add more job cards as needed -->
             </div>
         </main>
+        <script>
+            
+        // Apply button pop-up and color change
+        const applyButtons = document.querySelectorAll('.apply-btn');
+        applyButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                alert('You have applied for this job!');
+                button.style.backgroundColor = 'green'; // Change apply button color to green
+                button.style.color = 'white'; // Ensure text color is visible
+                button.textContent = 'Applied'; // Change text to indicate applied
+                button.disabled = true; // Disable button after applying
+            });
+        });
 
+        // Bookmark 
+        const bookmarkSpans = document.querySelectorAll('.bookmark-icon');
+        bookmarkSpans.forEach(span => {
+            const jobCard = span.closest('.job-card');
+            const jobId = jobCard.dataset.jobId;
+
+            // Load existing bookmarks and update color if already bookmarked
+            let bookmarkedJobs = JSON.parse(localStorage.getItem('bookmarkedJobs')) || [];
+            const isBookmarked = bookmarkedJobs.some(job => job.id === jobId);
+            if (isBookmarked) {
+                span.style.color = 'black'; // Set to black if already bookmarked
+            }
+
+            
+            span.addEventListener('click', (event) => {
+                toggleBookmark(jobCard, span); 
+            });
+        });
+
+        // bookmark (add/remove) and update color
+        function toggleBookmark(jobCard, span) {
+            const jobId = jobCard.dataset.jobId;
+            const jobTitle = jobCard.querySelector('.job-title').textContent;
+            const jobCompany = jobCard.querySelector('.job-company').textContent;
+
+            let bookmarkedJobs = JSON.parse(localStorage.getItem('bookmarkedJobs')) || [];
+            const isBookmarked = bookmarkedJobs.some(job => job.id === jobId);
+
+            if (isBookmarked) {
+                // Remove from bookmarks
+                bookmarkedJobs = bookmarkedJobs.filter(job => job.id !== jobId);
+                localStorage.setItem('bookmarkedJobs', JSON.stringify(bookmarkedJobs));
+                span.style.color = 'grey'; // Change color back to grey
+                alert('Job removed from bookmarks!');
+            } else {
+                // Add to bookmarks
+                bookmarkedJobs.push({ id: jobId, title: jobTitle, company: jobCompany });
+                localStorage.setItem('bookmarkedJobs', JSON.stringify(bookmarkedJobs));
+                span.style.color = 'black'; // Change color to black
+                alert('Job bookmarked successfully!');
+            }
+        }
+        </script>
+        
     </div>
-    <script src="/static/JavaScript/Jobprofile.js"></script>
-</body>
-</html>
+{% endblock %}
+
