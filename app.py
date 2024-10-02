@@ -8,7 +8,7 @@ app.config["SQLALCHEMY_BINDS"]={
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db=SQLAlchemy(app)
 
-class pro(db.Model):
+class pro(db.Model ):
     sno=db.Column(db.Integer,primary_key=True)
     first_name=db.Column(db.String(500),nullable = False)
     last_name=db.Column(db.String(500),nullable = False)
